@@ -6,8 +6,8 @@ describe("Spies", function() {
       beforeEach(function() {
         obj1 = {foo: function() {}};
         obj2 = {foo: function() {}};
-        obj1Spy = Spies.v2.spyOn(obj1, "foo");
-        obj2Spy = Spies.v2.spyOn(obj2, "foo");
+        obj1Spy = Spies.spyOn(obj1, "foo");
+        obj2Spy = Spies.spyOn(obj2, "foo");
       });
 
       it("keeps track of which object had method called on it", function() {
@@ -23,7 +23,7 @@ describe("Spies", function() {
     describe("not passing an object", function() {
       var spy;
       beforeEach(function() {
-        spy = Spies.v2.spyOn("foo");
+        spy = Spies.spyOn("foo");
       });
 
       it("tells if method was not called", function() {
@@ -38,7 +38,7 @@ describe("Spies", function() {
       it("returns the desired value", function() {
         var returnValue;
 
-        spy = Spies.v2.spyOn("bar", "returnValue");
+        spy = Spies.spyOn("bar", "returnValue");
 
         returnValue = spy.spyFunction();
 
@@ -86,7 +86,7 @@ describe("Spies", function() {
       var obj, spies;
       beforeEach(function() {
         obj = {foo: function() {}, bar: function() {}};
-        spies = Spies.v2.spyOn(obj, "foo");
+        spies = Spies.spyOn(obj, "foo");
       });
 
       it("tells if method was not called", function() {
@@ -101,7 +101,7 @@ describe("Spies", function() {
       it("returns the desired value", function() {
         var returnValue;
 
-        spy = Spies.v2.spyOn(obj, "bar", "returnValue");
+        spy = Spies.spyOn(obj, "bar", "returnValue");
 
         returnValue = obj.bar();
 
@@ -113,7 +113,7 @@ describe("Spies", function() {
         var obj, spy;
         obj = { id: "me" };
 
-        spy = Spies.v2.spyOn(obj, "foo");
+        spy = Spies.spyOn(obj, "foo");
 
         expect(spy.object.id).toEqual("me");
       });
@@ -121,7 +121,7 @@ describe("Spies", function() {
       it("holds a reference to the function being spied upon", function() {
         var spy, spiedUponFunction;
 
-        spy = Spies.v2.spyOn({}, "foo", "i am spied upon");
+        spy = Spies.spyOn({}, "foo", "i am spied upon");
 
         spiedUponFunction = spy.spyFunction;
 
@@ -134,7 +134,7 @@ describe("Spies", function() {
 
           obj.foo = function() { originalCalled = true; };
 
-          spies = Spies.v2.spyOn(obj, "foo");
+          spies = Spies.spyOn(obj, "foo");
 
           spies.stopSpying();
 
@@ -191,8 +191,8 @@ describe("Spies", function() {
       });
 
       it("can stub both methods", function() {
-        Spies.v2.stub(obj, "foo");
-        Spies.v2.stub(obj, "bar");
+        Spies.stub(obj, "foo");
+        Spies.stub(obj, "bar");
 
         obj.foo();
         obj.bar();
@@ -202,7 +202,7 @@ describe("Spies", function() {
       });
 
       it("can stub one method, leaving the other", function() {
-        Spies.v2.stub(obj, "foo");
+        Spies.stub(obj, "foo");
 
         obj.foo();
         obj.bar();
@@ -213,8 +213,8 @@ describe("Spies", function() {
 
       it("can remove the stub from one method, leaving the other stubbed", function() {
         var fooSpy;
-        fooSpy = Spies.v2.stub(obj, "foo");
-        Spies.v2.stub(obj, "bar");
+        fooSpy = Spies.stub(obj, "foo");
+        Spies.stub(obj, "bar");
 
         fooSpy.removeStub();
 
@@ -228,8 +228,8 @@ describe("Spies", function() {
       it("can set a separate return value for each function stubbed", function() {
           var fooReturn, barReturn;
 
-          Spies.v2.stub(obj, "foo", "foo return");
-          Spies.v2.stub(obj, "bar", "bar return");
+          Spies.stub(obj, "foo", "foo return");
+          Spies.stub(obj, "bar", "bar return");
 
           fooReturn = obj.foo();
           barReturn = obj.bar();
@@ -246,7 +246,7 @@ describe("Spies", function() {
       });
       it("prevents the original function from being called", function() {
         var spy;
-        spy = Spies.v2.stub(obj, "foo");
+        spy = Spies.stub(obj, "foo");
 
         obj.foo();
 
@@ -256,7 +256,7 @@ describe("Spies", function() {
       it("can be told to return a certain value", function() {
         var spy, returnValue;
 
-        spy = Spies.v2.stub(obj, "foo", "return value");
+        spy = Spies.stub(obj, "foo", "return value");
 
         returnValue = obj.foo();
 
@@ -266,7 +266,7 @@ describe("Spies", function() {
       it("can be removed to allow the original function to be called again", function() {
         var spy;
 
-        spy = Spies.v2.stub(obj, "foo");
+        spy = Spies.stub(obj, "foo");
 
         spy.removeStub();
       
