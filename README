@@ -10,6 +10,11 @@ The tests are using jasmine, specifically the jasmine-ruby gem.
 Jasmine: http://github.com/pivotal/jasmine
 Ruby-Jasmine: http://github.com/pivotal/jasmine-ruby
 
+== Thanks to
+
+Sarah Gray for helping with the initial implementation inside of The Stickies Project.
+Nate Jackson, David Chelimsky and Ethan Gunderson for pairing and usage ideas.
+
 == Using spies.js
 
 1. Put spies.js in an accessible place in your application.
