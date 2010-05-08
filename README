@@ -1,12 +1,16 @@
 == spies.js
 
-This is a javascript spy framework that was extracted from Corey Haines and Sarah Gray's work on The Stickies Project (http://thestickiesproject.heroku.com). 
+This is a javascript spy framework that was extracted from work on The Stickies Project (http://thestickiesproject.heroku.com). 
 
+I'll be writing a blog post soon, but you can see usage via the example specs.
+
+The tests are using jasmine, specifically the jasmine-ruby gem.
+http://github.com/pivotal/jasmine-ruby
 
 == Using spies.js
 
 1. Put spies.js in an accessible place in your application.
 2. Include it in your specs
-3. Use it according to the examples (located in spies_spec.js)
+3. Use it according to the examples (located in spec/javascript/spies_spec.js)
 
 
