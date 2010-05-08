@@ -8,5 +8,4 @@ class JasmineHelper
     #return a list of stylesheets you want to load in the runner    
     []
   end
-
 end
