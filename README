@@ -1,6 +1,7 @@
 == spies.js
 
 This is a javascript spy framework that was extracted from work on The Stickies Project (http://thestickiesproject.heroku.com). 
+You can read about our work on The Stickies Project on the our blog, where we post about interesting things we've found while working: http://thestickiesproject.wordpress.com/
 
 I'll be writing a blog post soon, but you can see usage via the example specs.
 
