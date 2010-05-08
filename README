@@ -5,7 +5,9 @@ This is a javascript spy framework that was extracted from work on The Stickies 
 I'll be writing a blog post soon, but you can see usage via the example specs.
 
 The tests are using jasmine, specifically the jasmine-ruby gem.
-http://github.com/pivotal/jasmine-ruby
+
+Jasmine: http://github.com/pivotal/jasmine
+Ruby-Jasmine: http://github.com/pivotal/jasmine-ruby
 
 == Using spies.js
 
