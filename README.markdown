@@ -12,8 +12,9 @@ Ruby-Jasmine: http://github.com/pivotal/jasmine-ruby
 
 == Thanks to
 
-Sarah Gray for helping with the initial implementation inside of The Stickies Project.
-[Nate Jackson](http://www.github.com/njackson), David Chelimsky and Ethan Gunderson for pairing and usage ideas.
+[Sarah Gray](http://www.github.com/sarah) for helping with the initial implementation inside of The Stickies Project.
+
+[Nate Jackson](http://www.github.com/njackson), [David Chelimsky](http://www.github.com/dchelimsky) and [Ethan Gunderson](http://github.com/ethangunderson) for pairing and usage ideas.
 
 == Using spies.js
 
