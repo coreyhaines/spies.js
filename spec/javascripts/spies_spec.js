@@ -1,41 +1,43 @@
 jasmine.include("../../lib/spies.js", true);
-describe("Spies", function() {
-  describe("#spyOn", function() {
-    describe("spying on multiple objects", function() {
-      var obj1, obj2, obj1Spy, obj2Spy;
-      beforeEach(function() {
-        obj1 = {foo: function() {}};
-        obj2 = {foo: function() {}};
+describe("Spies", () => {
+  describe("#spyOn", () => {
+    describe("spying on multiple objects", () => {
+      var obj1;
+      var obj2;
+      var obj1Spy;
+      var obj2Spy;
+      beforeEach(() => {
+        obj1 = {foo() {}};
+        obj2 = {foo() {}};
         obj1Spy = Spies.spyOn(obj1, "foo");
         obj2Spy = Spies.spyOn(obj2, "foo");
       });
 
-      it("keeps track of which object had method called on it", function() {
+      it("keeps track of which object had method called on it", () => {
         obj1.foo();
 
         expect(obj1Spy.wasCalled("foo")).toEqual(true);
         expect(obj2Spy.wasCalled("foo")).toEqual(false);
       });
-
     });
 
 
-    describe("not passing an object", function() {
+    describe("not passing an object", () => {
       var spy;
-      beforeEach(function() {
+      beforeEach(() => {
         spy = Spies.spyOn("foo");
       });
 
-      it("tells if method was not called", function() {
+      it("tells if method was not called", () => {
         expect(spy.wasCalled()).toEqual(false);
       });
 
-      it("tells if method was called", function() {
+      it("tells if method was called", () => {
         spy.spyFunction();
         expect(spy.wasCalled()).toEqual(true);
       });
 
-      it("returns the desired value", function() {
+      it("returns the desired value", () => {
         var returnValue;
 
         spy = Spies.spyOn("bar", "returnValue");
@@ -46,8 +48,8 @@ describe("Spies", function() {
 
       });
 
-      describe("can resetSpy to forget previous interactions", function() {
-        it("resets to not having been called", function() {
+      describe("can resetSpy to forget previous interactions", () => {
+        it("resets to not having been called", () => {
             spy.spyFunction();
 
             spy.resetSpy();
@@ -55,7 +57,7 @@ describe("Spies", function() {
             expect(spy.wasCalled()).toEqual(false);
         });
 
-        it("resets the passedArguments to empty", function() {
+        it("resets the passedArguments to empty", () => {
             spy.spyFunction("1", "2", "3");
 
             spy.resetSpy();
@@ -64,15 +66,15 @@ describe("Spies", function() {
         });
       });
 
-      describe("accessing passedArguments", function() {
-        it("allows you to access by index", function() {
+      describe("accessing passedArguments", () => {
+        it("allows you to access by index", () => {
           spy.spyFunction("argument1", "argument2");
 
           expect(spy.passedArguments(1)).toEqual("argument1");
           expect(spy.passedArguments(2)).toEqual("argument2");
         });
 
-        it("passing no index returns all arguments", function() {
+        it("passing no index returns all arguments", () => {
           spy.spyFunction("argument1", "argument2");
           
           expect(spy.passedArguments()[0]).toEqual("argument1");
@@ -82,23 +84,24 @@ describe("Spies", function() {
       });
       
     });
-    describe("spying on a single object", function() {
-      var obj, spies;
-      beforeEach(function() {
-        obj = {foo: function() {}, bar: function() {}};
+    describe("spying on a single object", () => {
+      var obj;
+      var spies;
+      beforeEach(() => {
+        obj = {foo() {}, bar() {}};
         spies = Spies.spyOn(obj, "foo");
       });
 
-      it("tells if method was not called", function() {
+      it("tells if method was not called", () => {
         expect(spies.wasCalled()).toEqual(false);
       });
 
-      it("tells if method was called", function() {
+      it("tells if method was called", () => {
         obj.foo();
         expect(spies.wasCalled()).toEqual(true);
       });
 
-      it("returns the desired value", function() {
+      it("returns the desired value", () => {
         var returnValue;
 
         spy = Spies.spyOn(obj, "bar", "returnValue");
@@ -109,8 +112,9 @@ describe("Spies", function() {
 
       });
 
-      it("holds a reference to the object spied upon", function() {
-        var obj, spy;
+      it("holds a reference to the object spied upon", () => {
+        var obj;
+        var spy;
         obj = { id: "me" };
 
         spy = Spies.spyOn(obj, "foo");
@@ -118,8 +122,9 @@ describe("Spies", function() {
         expect(spy.object.id).toEqual("me");
       });
 
-      it("holds a reference to the function being spied upon", function() {
-        var spy, spiedUponFunction;
+      it("holds a reference to the function being spied upon", () => {
+        var spy;
+        var spiedUponFunction;
 
         spy = Spies.spyOn({}, "foo", "i am spied upon");
 
@@ -128,11 +133,11 @@ describe("Spies", function() {
         expect(spiedUponFunction()).toEqual("i am spied upon");
       });
 
-      it("can stopSpying to restore function", function() {
+      it("can stopSpying to restore function", () => {
           var originalCalled;
           originalCalled = false;
 
-          obj.foo = function() { originalCalled = true; };
+          obj.foo = () => { originalCalled = true; };
 
           spies = Spies.spyOn(obj, "foo");
 
@@ -143,8 +148,8 @@ describe("Spies", function() {
           expect(originalCalled).toEqual(true);
       });
 
-      describe("can resetSpy to forget previous interactions", function() {
-        it("resets to not having been called", function() {
+      describe("can resetSpy to forget previous interactions", () => {
+        it("resets to not having been called", () => {
             obj.foo();
 
             spies.resetSpy();
@@ -152,7 +157,7 @@ describe("Spies", function() {
             expect(spies.wasCalled()).toEqual(false);
         });
 
-        it("resets the passedArguments to empty", function() {
+        it("resets the passedArguments to empty", () => {
             obj.foo("1", "2", "3");
 
             spies.resetSpy();
@@ -161,15 +166,15 @@ describe("Spies", function() {
         });
       });
 
-      describe("accessing passedArguments", function() {
-        it("allows you to access by index", function() {
+      describe("accessing passedArguments", () => {
+        it("allows you to access by index", () => {
           obj.foo("argument1", "argument2");
 
           expect(spies.passedArguments(1)).toEqual("argument1");
           expect(spies.passedArguments(2)).toEqual("argument2");
         });
 
-        it("passing no index returns all arguments", function() {
+        it("passing no index returns all arguments", () => {
           obj.foo("argument1", "argument2");
           
           expect(spies.passedArguments()[0]).toEqual("argument1");
@@ -177,20 +182,19 @@ describe("Spies", function() {
           expect(spies.passedArguments().length).toEqual(2);
         });
       });
-      
     });
   });
-  describe("#stub", function(){
-    describe("multiple methods", function() {
+  describe("#stub", () => {
+    describe("multiple methods", () => {
       var obj;
-      beforeEach(function() {
+      beforeEach(() => {
         obj = { wasFooCalled: false, wasBarCalled: false,
-                foo: function() { this.wasFooCalled = true; },
-                bar: function() { this.wasBarCalled = true; }
+                foo() { this.wasFooCalled = true; },
+                bar() { this.wasBarCalled = true; }
               };
       });
 
-      it("can stub both methods", function() {
+      it("can stub both methods", () => {
         Spies.stub(obj, "foo");
         Spies.stub(obj, "bar");
 
@@ -201,7 +205,7 @@ describe("Spies", function() {
         expect(obj.wasBarCalled).toEqual(false);
       });
 
-      it("can stub one method, leaving the other", function() {
+      it("can stub one method, leaving the other", () => {
         Spies.stub(obj, "foo");
 
         obj.foo();
@@ -211,7 +215,7 @@ describe("Spies", function() {
         expect(obj.wasBarCalled).toEqual(true);
       });
 
-      it("can remove the stub from one method, leaving the other stubbed", function() {
+      it("can remove the stub from one method, leaving the other stubbed", () => {
         var fooSpy;
         fooSpy = Spies.stub(obj, "foo");
         Spies.stub(obj, "bar");
@@ -225,26 +229,27 @@ describe("Spies", function() {
         expect(obj.wasBarCalled).toEqual(false);
       });
 
-      it("can set a separate return value for each function stubbed", function() {
-          var fooReturn, barReturn;
+      it("can set a separate return value for each function stubbed", () => {
+        var fooReturn;
+        var barReturn;
 
-          Spies.stub(obj, "foo", "foo return");
-          Spies.stub(obj, "bar", "bar return");
+        Spies.stub(obj, "foo", "foo return");
+        Spies.stub(obj, "bar", "bar return");
 
-          fooReturn = obj.foo();
-          barReturn = obj.bar();
+        fooReturn = obj.foo();
+        barReturn = obj.bar();
 
-          expect(fooReturn).toEqual("foo return");
-          expect(barReturn).toEqual("bar return");
+        expect(fooReturn).toEqual("foo return");
+        expect(barReturn).toEqual("bar return");
       });
     });
 
-    describe("single method", function() {
+    describe("single method", () => {
       var obj;
-      beforeEach(function() {
-        obj = { wasCalled:false, foo: function(){ this.wasCalled = true; } };
+      beforeEach(() => {
+        obj = { wasCalled:false, foo() { this.wasCalled = true; } };
       });
-      it("prevents the original function from being called", function() {
+      it("prevents the original function from being called", () => {
         var spy;
         spy = Spies.stub(obj, "foo");
 
@@ -253,8 +258,9 @@ describe("Spies", function() {
         expect(obj.wasCalled).toEqual(false);
       });
 
-      it("can be told to return a certain value", function() {
-        var spy, returnValue;
+      it("can be told to return a certain value", () => {
+        var spy;
+        var returnValue;
 
         spy = Spies.stub(obj, "foo", "return value");
 
@@ -263,7 +269,7 @@ describe("Spies", function() {
         expect(returnValue).toEqual("return value");
       });
     
-      it("can be removed to allow the original function to be called again", function() {
+      it("can be removed to allow the original function to be called again", () => {
         var spy;
 
         spy = Spies.stub(obj, "foo");
